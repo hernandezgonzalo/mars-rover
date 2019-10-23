@@ -15,20 +15,22 @@ var rovers = [
   }
 ];
 
-var board = [ //declarar tablero con obstáculos
-  ['◦','◦','◦','◦','◦','◦','◦','◦','◦','◦'],
-  ['◦','◦','X','◦','◦','◦','◦','X','◦','◦'],
-  ['◦','◦','◦','◦','X','◦','◦','◦','◦','◦'],
-  ['◦','◦','◦','◦','◦','◦','◦','◦','X','◦'],
-  ['◦','X','◦','◦','◦','◦','◦','◦','◦','◦'],
-  ['◦','◦','◦','X','◦','◦','◦','◦','◦','◦'],
-  ['◦','◦','◦','◦','◦','X','◦','◦','◦','◦'],
-  ['◦','◦','◦','◦','◦','◦','◦','◦','◦','◦'],
-  ['◦','◦','X','◦','◦','◦','◦','◦','X','◦'],
-  ['◦','◦','◦','◦','◦','◦','◦','◦','◦','◦']
-];
-
 const EMP = '◦', OBS = 'X'; //declarar las constantes que representan los espacios vacios y los obstáculos
+
+var board = [];
+
+//generar tablero
+for (i = 0; i<10; i++){
+  board [i] = [];
+  for (j = 0; j<10; j++){
+    board[i][j] = EMP;
+  }
+}
+
+//añadir obstáculos al tablero
+for (i = 0; i < 7; i++){
+  board[randomNumber()][randomNumber()] = OBS;
+}
 
 rovers.forEach(function(rover){
   board[rover.y][rover.x] = rover.id; //añadir la posición actual de los Rovers en el tablero
@@ -177,4 +179,8 @@ function formatBoard(){
     salida += '\n';
   });
   return(salida);
+}
+
+function randomNumber() {
+	return Math.floor(Math.random() * 10);
 }
